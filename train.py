@@ -8,8 +8,8 @@ import os
 from torch.utils.tensorboard import SummaryWriter
 
 max_epoch = 100
-batch_size = 512
-device = "cuda:0"
+batch_size = 64
+device = "cuda:3"
 save_model_path = "./saved_model"
 log_dir = "./logs"
 
@@ -24,7 +24,7 @@ writer = SummaryWriter(log_dir=log_dir)
 
 dataset = my_dataset(is_train=True)  # Initialize the dataset
 model = VisionTransformer().to(device)
-optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 dataloader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=4, drop_last=True)
 
 cur_iter = 0

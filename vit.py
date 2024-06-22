@@ -17,7 +17,8 @@ class VisionTransformer(nn.Module):
     def forward(self, pixel_value): 
         ### pixel_value is torch.size([b, 3, 224, 224])
         hidden_states = self.vit_embedding(pixel_value)  # [b, 197, 768]
-        hidden_states = self.transformer_encoder(hidden_states) # [b, 197, 768]
+        for _ in range(6):
+            hidden_states = self.transformer_encoder(hidden_states) # [b, 197, 768]
         poolout, last_hidden = self.mlp_head(hidden_states)  # [b, 768]
         logtic = self.fc_out(poolout) # [b, 2]
         return logtic
