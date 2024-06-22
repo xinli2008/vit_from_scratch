@@ -6,14 +6,13 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
 class VisionTransformer(nn.Module):
     def __init__(self):
         super(VisionTransformer, self).__init__()
         self.vit_embedding = VitEmbedding()
         self.transformer_encoder = TransformerEncoder()
         self.mlp_head = MlpHead()
-        self.fc_out = nn.Linear(768, 2)
+        self.fc_out = nn.Linear(768, 10)
 
     def forward(self, pixel_value): 
         ### pixel_value is torch.size([b, 3, 224, 224])
@@ -28,7 +27,7 @@ class VitEmbedding(nn.Module):
         super(VitEmbedding, self).__init__()
         image_size = 224
         patch_size = 16
-        num_channels = 3
+        num_channels = 1
         hidden_states = 768
         num_patches = (image_size//patch_size)**2
         self.image2patch = PatchEmbedding(image_size, patch_size, num_channels, num_patches, hidden_states)
@@ -155,7 +154,7 @@ class MlpHead(nn.Module):
     
 
 if __name__ == "__main__":
-    input_tensor = torch.randn(10, 3, 224, 224)
+    input_tensor = torch.randn(10, 1, 224, 224)
     vit = VisionTransformer()
     output_tensor = vit(input_tensor)
     print(output_tensor.shape)
