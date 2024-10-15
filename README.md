@@ -1,4 +1,4 @@
-# vit4classification
+# Vision Transformer
 
 ## Introduction
 
