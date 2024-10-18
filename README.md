@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Pytorch版本实现的Vision Transformer, 它仅可以用于学习目的, 帮助更好的了解VIT的工作原理。
+Pytorch版本实现的Vision Transformer, 用于学习目的, 帮助更好的了解VIT的工作原理。
 
 ## Architecture
 
